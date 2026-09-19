@@ -1,158 +1,99 @@
 
-# Make Your Trip ✈️🏡
+# Make Your Trip
 
-A full-stack travel accommodation platform that helps users discover, explore, and share unique stays across different destinations. Users can create listings, upload images, and leave reviews to help fellow travelers make informed decisions.
+Make Your Trip is a full-stack travel accommodation application. Users can browse stays, create and manage listings, upload listing images, register or sign in, and leave reviews and ratings.
 
----
+## Features
 
-## 🚀 Features
+- Browse listing cards and detailed property pages
+- Create, edit, and delete listings
+- Upload listing images through Cloudinary
+- Local authentication with Passport.js
+- Optional Google OAuth sign-in
+- Reviews and ratings with protected create and delete actions
+- MongoDB-backed sessions and flash messages
+- Joi validation and centralized error pages
 
-### 🔐 Authentication & Authorization
+## Tech Stack
 
-* User Registration and Login
-* Secure Authentication with Passport.js
-* Session Management
-* Protected Routes for Authorized Users
+- Node.js and Express
+- EJS and EJS Mate for server-rendered views
+- MongoDB with Mongoose
+- Passport Local and Google OAuth 2.0
+- Cloudinary and Multer for image uploads
+- Bootstrap, custom CSS, and vanilla JavaScript
 
-### 🏠 Property Listings
+## Requirements
 
-* Create New Listings
-* View Listing Details
-* Edit Existing Listings
-* Delete Listings
-* Manage Property Information
+- Node.js 18 or newer
+- A MongoDB Atlas database
+- A Cloudinary account for listing images
+- Google OAuth credentials if Google sign-in is enabled
 
-### 📸 Image Uploads
+## Getting Started
 
-* Upload Property Images
-* Cloud Storage Integration using Cloudinary
-* Optimized Image Management
+1. Clone the repository and enter the project directory.
 
-### ⭐ Reviews & Ratings
+	```bash
+	git clone <repository-url>
+	cd Make-Your-Trip-main
+	```
 
-* Add Reviews and Ratings
-* Delete Reviews
-* Community Feedback System
+2. Install dependencies.
 
-### 🛡️ Security & Validation
+	```bash
+	npm install
+	```
 
-* Input Validation with Joi
-* Error Handling Middleware
-* Secure User Sessions
+3. Create a `.env` file in the project root:
 
----
+	```env
+	ATLASDB_URL=mongodb+srv://<username>:<password>@<cluster>/<database>
+	SECRET=replace-with-a-long-random-session-secret
+	CLOUD_NAME=your-cloudinary-cloud-name
+	CLOUD_API_KEY=your-cloudinary-api-key
+	CLOUD_API_SECRET=your-cloudinary-api-secret
+	GOOGLE_CLIENT_ID=your-google-client-id
+	GOOGLE_CLIENT_SECRET=your-google-client-secret
+	```
 
-## 🛠️ Tech Stack
+	`GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are only needed for Google OAuth. Configure the OAuth callback URL as `http://localhost:8080/auth/google/callback` during local development.
 
-### Frontend
+4. Start the application.
 
-* HTML5
-* CSS3
-* Bootstrap 5
-* JavaScript
-* EJS Templates
+	```bash
+	node app.js
+	```
 
-### Backend
+5. Open [http://localhost:8080](http://localhost:8080). The root route redirects to `/listings`.
 
-* Node.js
-* Express.js
-
-### Database
-
-* MongoDB Atlas
-* Mongoose
-
-### Authentication
-
-* Passport.js
-* Passport Local
-
-### Cloud Services
-
-* Cloudinary
-
-### Additional Packages
-
-* Joi
-* Connect Flash
-* Express Session
-* Connect Mongo
-* Method Override
-* Multer
-
-### Environment setup
-
-Copy `.env.example` to `.env` and provide your service credentials.
-
----
-
-## 📂 Project Structure
+## Project Structure
 
 ```text
-Make-Your-Trip
-│
-├── controllers/
-├── models/
-├── routes/
-├── views/
-├── public/
-├── utils/
-├── init/
-│
-├── middleware.js
-├── cloudConfig.js
-├── schema.js
-├── app.js
-├── package.json
-└── README.md
+controllers/   Request handlers for listings, reviews, and users
+models/        Mongoose models
+routes/        Express route modules
+views/         EJS pages and layouts
+public/        CSS and browser-side JavaScript
+utils/         Async wrapper and application errors
+app.js         Main Express application
+cloudConfig.js Cloudinary configuration
+schema.js      Joi validation schemas
 ```
 
----
+## Available Commands
 
-## 📸 Screenshots
+The project does not currently define npm scripts. Use these commands directly:
 
-### Home Page
+```bash
+npm install
+node app.js
+```
 
-Add screenshot here
+`index.js` is a small MongoDB connection and listing smoke-test server. The complete web application is started with `app.js`.
 
-### Listings Page
+## Notes
 
-Add screenshot here
-
-### Property Details Page
-
-Add screenshot here
-
-### Create Listing Page
-
-Add screenshot here
-
-### Login Page
-
-Add screenshot here
-
----
-
-## 🔮 Future Enhancements
-
-* Booking System
-* Wishlist Functionality
-* Payment Gateway Integration
-* Advanced Search & Filters
-* User Profiles
-* Email Notifications
-* Mobile Responsive Improvements
-
----
-
-## 👨‍💻 Author
-
-**Akash Gangwar**
-
-Full-Stack Web Developer | B.Tech computer science 
-
----
-
-## ⭐ Support
-
-If you like this project, consider giving it a ⭐ on GitHub!
+- Never commit `.env` or service credentials.
+- The application expects the MongoDB connection string in `ATLASDB_URL`.
+- The server listens on port `8080` by default.
