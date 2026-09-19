@@ -4,6 +4,9 @@ const Listing = require("../models/listing.js");
 
 module.exports.postReview=async(req,res)=>{
 let listing=await Listing.findById(req.params.id);
+if (!listing) {
+    return res.status(404).send("Listing not found");
+}
 let newReview=new Review(req.body.review);
 newReview.author=req.user._id;
 console.log(newReview);

@@ -1,4 +1,5 @@
 const Listing=require("./models/listing");
+const Review=require("./models/review.js");
 const ExpressError=require("./utils/ExpressError.js");
 const {listingSchema,reviewSchema}=require("./schema.js");
 
@@ -24,7 +25,7 @@ module.exports.isOwner = async (req, res, next) => {
         return res.redirect("/listings");
     }
 
-    if (!listing.owner.equals(res.locals.currUser._id)) {
+    if (!listing.owner || !listing.owner.equals(req.user._id)) {
         req.flash("error", "You don't have permission to edit");
         return res.redirect(`/listings/${id}`);
     }next();
@@ -48,3 +49,19 @@ module.exports.validateReview = (req,res,next)=>{
 
     next();
 };
+
+  module.exports.isReviewAuthor = async (req, res, next) => {
+    const review = await Review.findById(req.params.reviewId);
+
+    if (!review) {
+      req.flash("error", "Review not found");
+      return res.redirect(`/listings/${req.params.id}`);
+    }
+
+    if (!review.author || !review.author.equals(req.user._id)) {
+      req.flash("error", "You don't have permission to delete this review");
+      return res.redirect(`/listings/${req.params.id}`);
+    }
+
+    next();
+  };
