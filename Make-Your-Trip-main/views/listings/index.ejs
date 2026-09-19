@@ -1,0 +1,127 @@
+<% layout("/layouts/boilerplate") %>
+<style>
+  #filters{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .filetr{
+    text-align: center;
+    margin-top: 2rem;
+    margin-right: 2rem;
+    opacity: 0.7; 
+    
+  }
+  .filetr:hover{
+    opacity: 1;
+    cursor: pointer;
+    color:#5B4DF5;
+    box-sizing: content-box;
+    
+  }
+  .rr{
+border: 1px solid white;
+padding: 1rem;
+    border-radius:1rem;
+    background-color: white;
+    
+    
+    text-align: center;
+    margin-left:0.5rem ;
+  }
+  .rr:hover{ 
+    border: none;
+    background-color: #cac2f6;
+  box-shadow: 0px 2px 2px #6f63f6;}
+</style>
+<!-- <h1>All Listings</h1> -->
+ <div id="filters">
+  <div class="filetr">
+<div class="rr"><i class="fa-solid fa-fire fa-xl"></i></div>
+<p>Trending</p>
+  </div>
+  <div class="filetr">
+<div class="rr"><i class="fa-solid fa-bed fa-xl"></i></div>
+<p>Rooms</p>
+  </div>
+  <div class="filetr">
+<div class="rr"><i class="fa-solid fa-mountain-city fa-xl"></i></div>
+<p>Iconic Cities</p>
+  </div>
+  <div class="filetr">
+<div class="rr"><i class="fa-solid fa-mountain fa-xl"></i></div>
+<p>Mountains</p>
+  </div>
+  <div class="filetr">
+<div class="rr"><i class="fa-solid fa-plane fa-rotate-by fa-xl" style="--fa-rotate-angle: 360deg;"></i></div>
+<p>Flights</p>
+  </div>
+  <div class="filetr">
+<div class="rr"><i class="fa-solid fa-person-swimming fa-xl "></i></div>
+<p>Swimming</p>
+  </div>
+  <div class="filetr">
+<div class="rr"><i class="fa-solid fa-campground  fa-xl"></i></div>
+<p>Camping</p>
+  </div>
+  <div class="filetr">
+<div class="rr"><i class="fa-solid fa-plate-wheat fa-xl "></i></div>
+<p>Farm</p>
+  </div>
+  <div class="filetr">
+<div class="rr"><i class="fa-solid fa-motorcycle fa-xl"></i></div>
+<p>Arctice</p>
+  </div>
+  <div class="filetr">
+<div class="rr"><i class="fa-solid fa-bus fa-xl"></i></div>
+<p>Bus</p>
+  </div>
+  <div class="filetr">
+<div class="rr"><i class="fa-solid fa-taxi fa-xl"></i></i></div>
+<p>Taxi</p>
+  </div>
+  <div class="filetr">
+<div class="rr"><i class="fa-solid fa-train-tram fa-xl"></i></div>
+<p>Train</p>
+  </div>
+  
+  
+ </div>
+ 
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-3 row-cols-1 mt-3"><% for(let listing of allListings) { %>
+  <a href="/listings/<%=listing._id%>"class="listing-link">
+    <div class="card col position-relative">
+   <div> <div class="heart-icon">
+      <i class="fa-regular fa-heart" style="color: rgb(177, 151, 252);"></i>
+    </div>
+  <img src="<%= listing.image.url%>" class="card-img-top-li" alt="listing_image"style="height:20rem"/></div>  
+  <div class="card-img-overlay"></div>
+  <div class="card-body-li">
+    <p class="card-text-li">
+      <b> <%= listing.title %></b><br/>
+        &#8377; <%= listing.price.toLocaleString("en-IN") %>/night
+    </p>
+  </div>
+</div>
+  </a>  
+<% } %></div>
+
+  <button type="button" class="help" id="helpButton" aria-label="Open help" aria-expanded="false">
+    <a href="mailto:gnagwarakash555@gamil.com"><i class="fa-solid fa-headset fa-beat-fade fa-2xl fa-canvas-roomy"></i>
+  </a></button>
+
+ 
+
+  <script>
+    const helpButton = document.querySelector("#helpButton");
+    
+
+    helpButton.addEventListener("click", () => {
+      helpModal.hidden = false;
+      helpButton.setAttribute("aria-expanded", "true");
+    });
+    
+  </script>
+
+
+    
+  

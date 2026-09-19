@@ -1,0 +1,45 @@
+<% layout("/layouts/boilerplate") %>
+<div class="login">
+<div class="">
+  <div class="logo">
+    <i class="fa-solid fa-user fa-2xl" style="color:#6e5efc ;"></i>
+  </div>
+  <h1 class="create">Login</h1>
+  <div class="name">
+    <form action="/login" method="POST" class="needs-validation" novalidation>
+      <div class="">
+        <label for="username" class="form-label">Username</label>
+        <input
+          name="username"
+          id="username"
+          type="text"
+          class="form-control"
+          required
+        /> 
+        
+  
+      </div>
+      
+      <div class="">
+        <label for="password" class="form-label">Password</label>
+        <input
+          name="password"
+          id="password"
+          type="password"
+          class="form-control"
+          required
+        />
+        
+      </div>
+      <button class="btn btn-success login-btn">Login</button>
+      <p class="text-center or">or sign in with</p>
+     
+  <a href="/auth/google" class="btn ">
+    <button type="button" class="login-with-google-btn" >
+  Sign in with Google
+</button>
+  </a>
+
+    </form>
+  </div>
+</div></div>
